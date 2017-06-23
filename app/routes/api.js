@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var stripe = require("stripe")("sk_test_nxOdTTuECElaAjbh3svpG32m");
+var stripe = require("stripe")("sk_live_3l44ZiszNPjf1kWnUH1YWDYQ");
 
 //show the CRUD interface | GET
 router.post('/api/charge', function(req, res){
