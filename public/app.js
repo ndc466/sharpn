@@ -1,9 +1,4 @@
-var app = angular.module('app', [
-    'ui.router',
-    'angularPayments',
-    'angularCSS',
-    'angularMask'
-])
+var app = angular.module('app', ['ui.router'])
 
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -17,8 +12,7 @@ var app = angular.module('app', [
     $stateProvider 
     .state('home', {
         url: '/',
-        templateUrl: 'views/home.html',
-        css: 'css/grayscale.css'
+        templateUrl: 'views/home.html'
     })
     // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
     .state('who-we-are', {
@@ -41,8 +35,7 @@ var app = angular.module('app', [
     .state('give', {
         url: '/give',
         templateUrl: 'views/give.html',
-        controller: 'giveCtrl',
-        css: 'css/addon.css'
+        controller: 'giveCtrl'
     });
 
 });

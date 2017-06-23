@@ -3,19 +3,15 @@ var app = express();
 var path = require('path');
 var port = process.env.PORT || 8088;
 var bodyParser = require('body-parser');
-/*var morgan = require('morgan');
-var bcrypt = require('bcryptjs');
-
-var mongoose = require('mongoose');*/
+var morgan = require('morgan');
 var routes = require('./app/routes/api');
 
 /*
 var router = express.Router(); // Invoke the Express Router
 var appRoutes = require('./app/routes/api')(router); // Import the application end points/API
 
-
-app.use(morgan('dev'));
 */
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public')); // Allow front end to access public folder
