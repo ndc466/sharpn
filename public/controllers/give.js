@@ -4,7 +4,7 @@ var app = angular.module('app')
     $scope.amount;
     $scope.params = {}
 
-    var stripe = Stripe('pk_live_bzoGgEuczvQGB2pPdGHjBSt5');
+    var stripe = Stripe('pk_live_8hm2ujxSw77kpxrAjUODsglv');
     var elements = stripe.elements();
 
     var card = elements.create('card', {
