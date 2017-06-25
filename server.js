@@ -32,7 +32,7 @@ mongoose.connect('mongodb://localhost/dmg-app', function(err) {
 
 // Set Application Static Layout
 app.get('*', function(req, res) {
-    res.send(path.join(__dirname + '/public/index.html')); // Set index.html as layout
+    res.sendFile(path.join(__dirname + '/public/index.html')); // Set index.html as layout
 });
 
 // Start Server

@@ -6,37 +6,19 @@
           <div class="row justify-content-center">
               <!-- You can make it whatever width you want. I'm making it full width
                    on <= small devices and 4/12 page width on >= medium devices -->
-              <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+              <div class="col-xs-12 col-md-8 col-md-offset-2">
                 <br><br>
-                <h3 class="give">Donation Details</h2>
+                <h3 class="give">Donation Details</h3>
                 <p class="give">All donations to Sharpn Ministries are tax deductable.</p>
-                <div class="form-inline">
-                  <div class="form-group">
-                    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                    <div class="input-group justify-content-center">
-                      <div class="input-group-addon">$</div>
-                      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount to give" ng-model="amount">
-                    </div>
-                  </div>
-                  <!--
-                  <br>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                      One time donation
+                <form class="money">
+                  <div class="group-money">
+                    <label class="money">
+                      <span class="money">$</span>
+                      <input type="text" class="field-money" id="exampleInputAmount" placeholder="Amount to give" ng-model="amount">
                     </label>
+                  <!-- CREDIT CARD FORM STARTS HERE -->
                   </div>
-                  <br>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                      Recurring Donation
-                    </label>
-                  </div>
-                  -->
-                </div>
-                <!-- CREDIT CARD FORM STARTS HERE -->
-                <hr>
+                </form>
               </div>
               <div class="col-xs-12 col-md-8 col-md-offset-2">
                 <h3 class="give">Payment Details</h3>
@@ -65,7 +47,7 @@
                   <div class="outcome">
                     <div class="error"></div>
                     <div class="success">
-                      Success! Your Stripe token is <span class="token"></span>
+                      <span class="token"></span>
                     </div>
                   </div>
                   <br><br><br><br>

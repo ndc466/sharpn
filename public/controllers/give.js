@@ -34,13 +34,19 @@ var app = angular.module('app')
         if (result.token && $scope.amount > 0) {
             // Use the token to create a charge or a customer
             // https://stripe.com/docs/charges
-            successElement.querySelector('.token').textContent = result.token.id;
-            successElement.classList.add('visible');
             console.log(result.token);
             $scope.params.token = result.token;
             $scope.params.amount = $scope.amount;
             $http.post('/api/charge', $scope.params).then(function(res) {
-                res.data.success ? console.log("Charge successful") : console.log("Charge unsuccessful");
+                if (res.data.success) {
+                    console.log(res.data.charge);
+                    successElement.querySelector('.token').textContent = "Success!";
+                    successElement.classList.add('visible');
+                } else {
+                    console.log("Failure!");
+                    errorElement.textContent = result.error.message;
+                    errorElement.classList.add('visible');
+                }
             });
         } else if (result.error) {
             errorElement.textContent = result.error.message;

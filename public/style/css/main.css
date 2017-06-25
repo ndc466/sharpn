@@ -465,6 +465,54 @@ label > span {
 .field::-moz-placeholder { color: #CFD7E0; }
 .field:-ms-input-placeholder { color: #CFD7E0; }
 
+label.money {
+  position: relative;
+  color: black;
+  font-weight: 300;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 5px;
+  padding-right: 5px;
+  display: block;
+}
+
+form.money {
+  width: 300px;
+  margin: 20px auto;
+}
+
+.group-money {
+  background: white;
+  box-shadow: 0 7px 14px 0 rgba(49,49,93,0.10),
+              0 3px 6px 0 rgba(0,0,0,0.08);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.field-money {
+  background: transparent;
+  font-weight: 300;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-width: .5px;
+  color: #31325F;
+  outline: none;
+  padding-right: 10px;
+  padding-left: 20px;
+  cursor: text;
+  width: 85%;
+  height: 40px;
+  float: right;
+}
+
+label.money > span {
+  width: 15%;
+  text-align: center;
+  float: left;
+  padding-right: 5px;
+}
+
 button {
   float: left;
   box-shadow: 0 7px 14px 0 rgba(49,49,93,0.10),
@@ -499,7 +547,7 @@ button {
 }
 
 .error {
-  color: #E4584C;
+  color: red;
 }
 
 .success {
