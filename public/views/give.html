@@ -14,27 +14,26 @@
                   <div class="group-money">
                     <label class="money">
                       <span class="money">$</span>
-                      <input type="text" class="field-money" id="exampleInputAmount" placeholder="Amount to give" ng-model="amount">
+                      <input type="text" class="field-money" placeholder="Amount to give" ng-model="amount" ui-money-mask>
                     </label>
                   <!-- CREDIT CARD FORM STARTS HERE -->
                   </div>
                 </form>
-              </div>
-              <div class="col-xs-12 col-md-8 col-md-offset-2">
+                <hr>
                 <h3 class="give">Payment Details</h3>
                 <form>
                   <div class="group">
                     <label>
                       <span>Name</span>
-                      <input name="cardholder-name" class="field" placeholder="Jane Doe" />
+                      <input class="field" placeholder="Jane Doe" ng-model="cardholder"/>
                     </label>
                     <label>
                       <span>Phone</span>
-                      <input class="field" placeholder="(123) 456-7890" type="tel" />
+                      <input class="field" placeholder="(123) 456-7890" type="text" ng-model="phone" ui-br-phone-number/>
                     </label>
                     <label>
                       <span>ZIP code</span>
-                      <input name="address-zip" class="field" placeholder="94110" />
+                      <input class="field" placeholder="94110" ng-model="zip"/>
                     </label>
                   </div>
                   <div class="group">
@@ -43,7 +42,7 @@
                       <div id="card-element" class="field"></div>
                     </label>
                   </div>
-                  <button type="submit" class="btn btn-default btn-large">Give ${{amount}}</button>
+                  <button class="btn btn-default btn-large give" ng-click="charge()">Give ${{amount}}</button>
                   <div class="outcome">
                     <div class="error"></div>
                     <div class="success">

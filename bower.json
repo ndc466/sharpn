@@ -23,6 +23,7 @@
     "bootstrap": "^3.3.7",
     "jquery": "^3.2.1",
     "jquery-easing": "*",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "angular-input-masks": "^2.6.0"
   }
 }

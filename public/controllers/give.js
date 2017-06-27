@@ -4,10 +4,10 @@ var app = angular.module('app')
     $scope.amount;
     $scope.params = {}
 
-    var stripe = Stripe('pk_live_8hm2ujxSw77kpxrAjUODsglv');
-    var elements = stripe.elements();
+    //$scope.stripe = Stripe('pk_test_3fV1HvfAPJRrzbpSDIqVAwqe');
+    $scope.stripe = Stripe('pk_live_8hm2ujxSw77kpxrAjUODsglv');
 
-    var card = elements.create('card', {
+    $scope.card = $scope.stripe.elements().create('card', {
         hidePostalCode: true,
         style: {
             base: {
@@ -23,8 +23,8 @@ var app = angular.module('app')
             },
         }
     });
-    card.mount('#card-element');
-
+    $scope.card.mount('#card-element');
+/*
     function setOutcome(result) {
         var successElement = document.querySelector('.success');
         var errorElement = document.querySelector('.error');
@@ -67,4 +67,42 @@ var app = angular.module('app')
         };
         stripe.createToken(card, extraDetails).then(setOutcome);
     });
+*/
+    $scope.charge = function() {
+        $scope.stripe.createToken($scope.card, 
+            {
+                name: $scope.cardholder,
+                address_zip: $scope.zip
+            }).then(function(result) {
+            var successElement = document.querySelector('.success');
+            var errorElement = document.querySelector('.error');
+            successElement.classList.remove('visible');
+            errorElement.classList.remove('visible');
+
+            if (result.token && $scope.amount > 0) {
+                // Use the token to create a charge or a customer
+                // https://stripe.com/docs/charges
+                console.log(result.token);
+                console.log($scope.cardholder);
+                $scope.params.token = result.token;
+                $scope.params.amount = $scope.amount;
+                $http.post('/api/charge', $scope.params).then(function(res) {
+                    if (res.data.success) {
+                        console.log(res.data.charge);
+                        successElement.querySelector('.token').textContent = "Success!";
+                        successElement.classList.add('visible');
+                    } else {
+                        console.log("Failure!");
+                        errorElement.textContent = result.error.message;
+                        errorElement.classList.add('visible');
+                    }
+                });
+            } else if (result.error) {
+                errorElement.textContent = result.error.message;
+                errorElement.classList.add('visible');
+                console.log("Failure");
+            } 
+        });
+    }
+
 });

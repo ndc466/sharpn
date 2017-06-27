@@ -506,6 +506,10 @@ form.money {
   float: right;
 }
 
+.field-money::-webkit-input-placeholder { color: #CFD7E0; }
+.field-money::-moz-placeholder { color: #CFD7E0; }
+.field-money:-ms-input-placeholder { color: #CFD7E0; }
+
 label.money > span {
   width: 15%;
   text-align: center;
@@ -513,12 +517,11 @@ label.money > span {
   padding-right: 5px;
 }
 
-button {
+button.give {
   float: left;
   box-shadow: 0 7px 14px 0 rgba(49,49,93,0.10),
               0 3px 6px 0 rgba(0,0,0,0.08);
   border-radius: 4px;
-  border: 0;
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 15px;

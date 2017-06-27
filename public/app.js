@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router'])
+var app = angular.module('app', ['ui.router', 'ui.utils.masks'])
 
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
