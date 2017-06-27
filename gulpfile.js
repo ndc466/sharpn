@@ -30,7 +30,7 @@ gulp.task('less', function() {
 
 // Minify compiled CSS
 gulp.task('minify-css', ['less'], function() {
-    return gulp.src('public/style/css/*.css')
+    return gulp.src('public/style/css/main.css')
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('public/style/css'))
@@ -41,7 +41,7 @@ gulp.task('minify-css', ['less'], function() {
 
 // Minify JS
 gulp.task('minify-js', function() {
-    return gulp.src('public/style/js/*.js')
+    return gulp.src('public/style/js/main.js')
         .pipe(uglify())
         .pipe(header(banner, { pkg: pkg }))
         .pipe(rename({ suffix: '.min' }))
@@ -57,7 +57,9 @@ gulp.task('copy', function() {
         'bower_components/angular/angular.js', 
         'bower_components/angular/angular.min.js',
         'bower_components/angular-ui-router/release/angular-ui-router.js', 
-        'bower_components/angular-ui-router/release/angular-ui-router.min.js'])
+        'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+        'bower_components/angular-input-masks/angular-input-masks-standalone.js'
+    ])
     .pipe(gulp.dest('public/vendor/angular'))
 
     gulp.src([
