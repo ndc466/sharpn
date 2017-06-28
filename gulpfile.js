@@ -13,7 +13,7 @@ var banner = ['/*!\n',
     ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
     ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
     ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n',
-    ' \n',
+    ' */\n',
     ''
 ].join('');
 
@@ -30,10 +30,10 @@ gulp.task('less', function() {
 
 // Minify compiled CSS
 gulp.task('minify-css', ['less'], function() {
-    return gulp.src('public/style/css/main.css')
+    return gulp.src('public/style/src/css/*.css')
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('public/style/css'))
+        .pipe(gulp.dest('public/style/dist/css'))
         .pipe(browserSync.reload({
             stream: true
         }))
@@ -41,11 +41,11 @@ gulp.task('minify-css', ['less'], function() {
 
 // Minify JS
 gulp.task('minify-js', function() {
-    return gulp.src('public/style/js/main.js')
+    return gulp.src('public/style/src/js/*.js')
         .pipe(uglify())
         .pipe(header(banner, { pkg: pkg }))
         .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('public/style/js'))
+        .pipe(gulp.dest('public/style/dist/js'))
         .pipe(browserSync.reload({
             stream: true
         }))
@@ -53,12 +53,23 @@ gulp.task('minify-js', function() {
 
 // Copy vendor libraries from /node_modules into /vendor
 gulp.task('copy', function() {
+    gulp.src(['public/style/src/js/*.js']).pipe(gulp.dest('public/style/dist/js'))
+    gulp.src(['public/style/src/css/*.css']).pipe(gulp.dest('public/style/dist/css'))
+    gulp.src(['public/style/src/img/**/*']).pipe(gulp.dest('public/style/dist/img'))
+
     gulp.src([
         'bower_components/angular/angular.js', 
         'bower_components/angular/angular.min.js',
         'bower_components/angular-ui-router/release/angular-ui-router.js', 
         'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-        'bower_components/angular-input-masks/angular-input-masks-standalone.js'
+        'bower_components/angular-input-masks/angular-input-masks-standalone.js',
+        'bower_components/angular-input-masks/angular-input-masks-standalone.min.js',
+        'bower_components/angular-scroll/angular-scroll.js',
+        'bower_components/angular-scroll/angular-scroll.min.js',
+        'bower_components/angular-animate/angular-animate.js',
+        'bower_components/angular-animate/angular-animate.min.js',
+        'bower_components/ngmap/build/scripts/ng-map.js',
+        'bower_components/ngmap/build/scripts/ng-map.min.js',
     ])
     .pipe(gulp.dest('public/vendor/angular'))
 
@@ -66,7 +77,8 @@ gulp.task('copy', function() {
         'bower_components/bootstrap/dist/**/*', 
         '!**/npm.js', 
         '!**/bootstrap-theme.*', 
-        '!**/*.map'])
+        '!**/*.map'
+    ])
     .pipe(gulp.dest('public/vendor/bootstrap'))
 
     gulp.src([

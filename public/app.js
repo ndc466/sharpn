@@ -1,5 +1,5 @@
-var app = angular.module('app', ['ui.router', 'ui.utils.masks'])
-
+var app = angular.module('app', ['ui.router', 'ngAnimate', 'ui.utils.masks', 'duScroll', 'ngMap'])
+.value('duScrollDuration', 1000)
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     //Stripe.setPublishableKey('pk_live_bzoGgEuczvQGB2pPdGHjBSt5');
@@ -12,7 +12,8 @@ var app = angular.module('app', ['ui.router', 'ui.utils.masks'])
     $stateProvider 
     .state('home', {
         url: '/',
-        templateUrl: 'views/home.html'
+        templateUrl: 'views/home.html',
+        controller: 'homeCtrl'
     })
     // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
     .state('who-we-are', {

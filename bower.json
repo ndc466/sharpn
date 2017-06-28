@@ -24,6 +24,9 @@
     "jquery": "^3.2.1",
     "jquery-easing": "*",
     "font-awesome": "^4.7.0",
-    "angular-input-masks": "^2.6.0"
+    "angular-input-masks": "^2.6.0",
+    "angular-scroll": "^1.0.2",
+    "angular-animate": "^1.6.4",
+    "ngmap": "^1.18.4"
   }
 }
