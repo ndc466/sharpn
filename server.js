@@ -22,7 +22,12 @@ app.use('/', routes);
 
 app.configure('production', function() {
   app.use(function(req, res, next) {
-  	(req.header 'x-forwarded-proto' !== 'https') ? res.redirect(['https://', req.get('Host'), req.url].join('')) : next();
+    if (req.header 'x-forwarded-proto' !== 'https') {
+      res.redirect(['https://', req.get('host'), req.url].join(''));
+    }
+    else {
+      next();
+    }
   })
 })
 // Set Application Static Layout
