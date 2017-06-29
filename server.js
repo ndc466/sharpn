@@ -22,7 +22,7 @@ app.use('/', routes);
 
 app.configure('production', function() {
   app.use(function(req, res, next) {
-    if (req.header 'x-forwarded-proto' !== 'https') {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
       res.redirect(['https://', req.get('host'), req.url].join(''));
     }
     else {
