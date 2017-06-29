@@ -1,4 +1,4 @@
-var sslRedirect = require('heroku-ssl-redirect');
+//var sslRedirect = require('heroku-ssl-redirect');
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -21,7 +21,7 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use('/', routes);
 
 // enable ssl redirect
-app.use(sslRedirect());
+//app.use(sslRedirect());
 
 // Set Application Static Layout
 app.get('*', function(req, res) {
