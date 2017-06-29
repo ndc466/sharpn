@@ -1,3 +1,4 @@
+var sslRedirect = require('heroku-ssl-redirect');
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -18,17 +19,9 @@ app.use(express.static(__dirname + '/public')); // Allow front end to access pub
 app.use('/node_modules',  express.static(__dirname + '/node_modules'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use('/', routes);
-//app.use('/api', appRoutes);
 
-/*
-mongoose.connect('mongodb://localhost/dmg-app', function(err) {
-	if (err) {
-		console.log('Not connected to the database: ' + err);
-	} else {
-		console.log('Successfully connected to MongoDB');
-	}
-});
-*/
+// enable ssl redirect
+app.use(sslRedirect());
 
 // Set Application Static Layout
 app.get('*', function(req, res) {
