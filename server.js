@@ -20,14 +20,19 @@ app.use('/node_modules',  express.static(__dirname + '/node_modules'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use('/', routes);
 
+var https_redirect = function(req, res, next) {
+    if (process.env.NODE_ENV === 'production') {
+        if (req.headers['x-forwarded-proto'] != 'https') {
+            return res.redirect('https://' + req.headers.host + req.url);
+        } else {
+            return next();
+        }
+    } else {
+        return next();
+    }
+};
 
-/* Redirect http to https */
-app.get('*', function(req,res,next) {
-  if(req.headers['x-forwarded-proto'] != 'https' && process.env.NODE_ENV === 'production')
-    res.redirect('https://'+req.hostname+req.url)
-  else
-    next() /* Continue to other routes if we're not redirecting */
-});
+app.use(https_redirect);
 
 // Set Application Static Layout
 app.get('*', function(req, res) {
