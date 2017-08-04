@@ -24,9 +24,16 @@ app.use('/', routes);
 app.use(enforce.HTTPS());
 
 // Set Application Static Layout
-app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/public/index.html')); // Set index.html as layout
+
+app.get('*', function(req, res, next) {
+    if(req.headers['x-forwarded-proto']!='https') {
+        res.redirect('https://www.sharpnministries.com'+req.url)
+    } else {
+        next()
+    }
+    //res.sendFile(path.join(__dirname + '/public/index.html')); // Set index.html as layout
 });
+
 
 // Start Server
 app.listen(port, function() {
